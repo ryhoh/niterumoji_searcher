@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="jp" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>似ている文字サーチャー</title>
+    <link rel="stylesheet" href="static/style.css">
+  </head>
+  <body>
+    <h1>似ている文字サーチャー</h1>
+    <p>文字を入力すると，形が似ている文字が見つかります</p>
+
+    <div>
+      <form action="/" method="get">
+        <input type="text" maxlength="1" name="char">
+        <input type="submit" value="検索">
+      </form>
+    </div>
+
+    <div>
+      <table border="1">
+        <tr><th>順位</th><th>文字</th><th>類似度 (0.0 ~ 1.0)</th></tr>
+        {% for row in res %}
+        <tr><td>{{ loop.index }}</td><td>row[0]</td><td>row[1]</td></tr>
+        {% endfor %}
+      </table>
+    </div>
+
+  </body>
+</html>

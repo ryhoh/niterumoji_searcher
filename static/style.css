@@ -1,0 +1,15 @@
+body {
+  font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro W3","ヒラギノ丸ゴ Pro",
+  "Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+  "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  color: #111;
+}
+
+h1, p, div {
+  text-align: center;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
