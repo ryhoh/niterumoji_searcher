@@ -6,24 +6,36 @@
     <link rel="stylesheet" href="static/style.css">
   </head>
   <body>
-    <h1>似ている文字サーチャー</h1>
-    <p>文字を入力すると，形が似ている文字が見つかります</p>
+    <main>
+      <div>
+        <h1>似ている文字サーチャー</h1>
+        <p>
+          文字を入力すると，形が似ている文字が見つかる…かもしれません…<br>
+        </p>
+      </div>
 
-    <div>
-      <form action="/" method="get">
-        <input type="text" maxlength="1" name="char">
-        <input type="submit" value="検索">
-      </form>
-    </div>
+      <div>
+        <form action="/" method="get">
+          {% if input_char %}
+          <input type="text" maxlength="1" name="search_char" id="input_char" value="{{ input_char }}">
+          {% else %}
+          <input type="text" maxlength="1" name="search_char" id="input_char">
+          {% endif %}
+          <input type="submit" value="検索">
+        </form>
+      </div>
 
-    <div>
-      <table border="1">
-        <tr><th>順位</th><th>文字</th><th>類似度 (0.0 ~ 1.0)</th></tr>
-        {% for row in res %}
-        <tr><td>{{ loop.index }}</td><td>row[0]</td><td>row[1]</td></tr>
-        {% endfor %}
-      </table>
-    </div>
+      <div>
+        <table>
+          {% if res %}
+          <tr><th>順位</th><th>文字</th><th>文字コード(UTF-8)</th><th>類似度(%)</th></tr>
+          {% for row in res %}
+          <tr class="bg{{ loop.index % 2 }}"><td>{{ loop.index }}</td><td>{{ row[0] }}</td><td class="number">{{ row[1] }}</td><td class="number">{{ row[2] }}</td></tr>
+          {% endfor %}
+          {% endif %}
+        </table>
+      </div>
+    </main>
 
   </body>
 </html>

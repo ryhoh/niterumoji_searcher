@@ -1,15 +1,70 @@
-body {
-  font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro W3","ヒラギノ丸ゴ Pro",
-  "Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-  "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-  color: #111;
+@charset "UTF-8";
+
+:root {
+  --prime-color:  #2c3e50;
+  --second-color: rgb(234, 76, 136);
 }
 
-h1, p, div {
+
+body {
+	font-family: "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "Noto Sans JP", sans-serif;
+	color: #111;
+	background-color: #FFF;
+  margin: 0px;
+}
+
+main div {
   text-align: center;
 }
 
+#input_char {
+  width: 4em;
+}
+
+/* Table */
 table {
-  margin-left: auto;
-  margin-right: auto;
+	border-spacing: 3px;
+  padding-top: 10px;
+  margin:0 auto;
+}
+
+th, td {
+	padding: 5px;
+}
+
+th {
+	color: #FAFAFA;
+  background-color: var(--prime-color);
+	font-size: 17px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+td {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.bg1 td {
+  background-color: lightgrey;
+}
+
+/* -- クラスごとの設定 -- */
+
+/* Text Color */
+.caution {
+	color: var(--color-caution);
+	font-weight: 800;
+}
+
+.warn {
+	color: var(--color-warn);
+	font-weight: 800;
+}
+
+/* 表 */
+.number {
+    text-align: right;
 }
