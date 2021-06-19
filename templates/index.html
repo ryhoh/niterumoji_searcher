@@ -27,15 +27,49 @@
         </form>
       </div>
 
+      {% if input_char %}
       <div>
+        <h2>入力された文字</h2>
+        <div>
+          <span class="big_font">{{ input_char }}</span>
+          <p>文字コード(UTF-8)： {{ input_code }}</p>
+        </div>
+      </div>
+      {% endif %}
+
+      <div>
+        {% if res %}
+        <hr>
+        <h2>これに似た形の文字はこちら</h2>
+        <div>
+          {% if reccomend_end %}
+          <ul class="horizontal_items">
+            {% for row in res[:reccomend_end] %}
+            <li>
+              <a href="/?search_char={{ row[0] }}" class="big_font">{{ row[0] }}</a>
+              <a href="/?search_char={{ row[0] }}">{{ row[1] }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>これに似た形の文字は、あまりないようです…</p>
+          {% endif %}
+        </div>
+
+        <hr>
+        <h2>順位一覧</h2>
         <table>
-          {% if res %}
           <tr><th>順位</th><th>文字</th><th>文字コード(UTF-8)</th><th>類似度(%)</th></tr>
           {% for row in res %}
-          <tr class="bg{{ loop.index % 2 }}"><td>{{ loop.index }}</td><td>{{ row[0] }}</td><td class="number">{{ row[1] }}</td><td class="number">{{ row[2] }}</td></tr>
+          <tr class="bg{{ loop.index % 2 }}">
+            <td>{{ loop.index }}</td>
+            <td><a href="/?search_char={{ row[0] }}" class="char">{{ row[0] }}</a></td>
+            <td class="number">{{ row[1] }}</td>
+            <td class="number">{{ row[2] }}</td>
+          </tr>
           {% endfor %}
-          {% endif %}
         </table>
+        {% endif %}
       </div>
     </main>
 

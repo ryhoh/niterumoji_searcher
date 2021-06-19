@@ -1,10 +1,12 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
 :root {
   --prime-color:  #2c3e50;
-  --second-color: rgb(234, 76, 136);
+  --second-color: lightgrey;
 }
-
 
 body {
 	font-family: "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "Noto Sans JP", sans-serif;
@@ -14,6 +16,10 @@ body {
 
 main div {
   text-align: center;
+}
+
+h2 {
+  margin-bottom: 0px;
 }
 
 #input_char {
@@ -47,10 +53,41 @@ td {
 }
 
 .bg1 td {
-  background-color: lightgrey;
+  background-color: var(--second-color);
 }
 
-/* -- クラスごとの設定 -- */
+.char, .big_font {
+  text-decoration: none;
+  font-family: "Noto Serif JP", sans-serif;
+}
+
+.big_font {
+  color: black;
+  font-size: 120px;
+}
+
+/* Horizontal Items */
+.horizontal_items {
+  text-align: center;
+}
+
+.horizontal_items li {
+  display: inline-block;
+  width: 160px;
+}
+
+li a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  padding-bottom: 10px;
+}
+
+li:hover {
+  background-color: lightgrey;
+}
 
 /* Text Color */
 .caution {
