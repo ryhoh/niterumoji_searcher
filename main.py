@@ -30,7 +30,7 @@ async def root(request: Request, search_char: Optional[str] = None):
                 "res": None,
                 "input_char": None,
                 "input_code": None,
-                "reccomend_end": None,
+                "reccomend_idxs": None,
             }
         )
 
@@ -45,7 +45,7 @@ async def root(request: Request, search_char: Optional[str] = None):
         return templates.TemplateResponse('unavailable.html', {"request": request,})
 
     ranking = cos_sims_ranking(search_char)
-    reccomend_end = sum(float(elm[2]) > 95 for elm in ranking[:6])  # Over 95% (6 items at most)
+    reccomend_idxs = top_k_idxs(ranking, 6, 95, search_char)  # Over 95%, 6 items at most, not includes search_char
     return templates.TemplateResponse(
         "index.html",
         {
@@ -53,7 +53,7 @@ async def root(request: Request, search_char: Optional[str] = None):
             "res": cos_sims_ranking(search_char),
             "input_char": search_char,
             "input_code": char_to_code(search_char, "utf-8", lower=False),
-            "reccomend_end": reccomend_end,
+            "reccomend_idxs": reccomend_idxs,
         }
     )
 
@@ -114,6 +114,16 @@ def char_to_code(char: str, enc: str, lower: bool = True) -> str:
 def utf16code_to_utf8code(utf16code: str) -> str:
     return "".join("{:02X}".format(c) for c in chr(int('0x' + utf16code, base=16)).encode("utf-8"))
 
+
+def top_k_idxs(ranking: List[Tuple[str, str, str]], top_k: int, border: float, except_char: str) -> List[int]:
+    res: List[int] = []
+    for idx, row in enumerate(ranking[:top_k + 1]):
+        if float(row[2]) < border:
+            break
+        if row[0] != except_char:
+            res.append(idx)
+    return res[:top_k]
+        
 
 if __name__ == '__main__':
     uvicorn.run(app)

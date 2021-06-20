@@ -42,9 +42,10 @@
         <hr>
         <h2>これに似た形の文字はこちら</h2>
         <div>
-          {% if reccomend_end %}
+          {% if reccomend_idxs %}
           <ul class="horizontal_items">
-            {% for row in res[:reccomend_end] %}
+            {% for reccomend_idx in reccomend_idxs %}
+            {% set row = res[reccomend_idx] %}
             <li>
               <a href="/?search_char={{ row[0] }}" class="big_font">{{ row[0] }}</a>
               <a href="/?search_char={{ row[0] }}">{{ row[1] }}</a>
