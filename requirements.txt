@@ -7,6 +7,6 @@ jinja2==2.11.3
 MarkupSafe==2.0.1
 numpy==1.22.0
 pydantic==1.8.2
-starlette==0.14.2
+starlette==0.25.0
 typing-extensions==3.10.0.0
 uvicorn==0.14.0
